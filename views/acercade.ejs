@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Acerca de AquaMeasure</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">AquaMeasure</div>
+      <nav class="menu">
+        <ul>
+          <li><a href="/"><span class="icon">🏠</span><span class="text">Dashboard</span></a></li>
+          <li class="active"><a href="/acercade"><span class="icon">❔</span><span class="text">Acerca de</span></a></li>
+          <li><a href="#"><span class="icon">📄</span><span class="text">Proximamente...</span></a></li>
+          <li><a href="#"><span class="icon">💬</span><span class="text">Proximamente...</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+      <header class="header">
+        <button id="toggleSidebar">&#9776;</button>
+        <h1>Acerca de AquaMeasure</h1>
+      </header>
+
+      <!-- Sección Acerca de -->
+      <section class="about-container">
+        <div class="about-text">
+          <h2>Bienvenido a AquaMeasure</h2>
+          <p>
+            AquaMeasure es un proyecto orientado a monitorear en tiempo real el nivel de agua en tinacos o cisternas mediante
+            una placa ESP32 y un sensor ultrasónico HC-SR04. Utilizamos Firebase en el backend para almacenar los datos
+            y Render como intermediario para exponer un API REST seguro. El frontend consiste en un dashboard interactivo
+            que permite visualizar temperatura, distancia, nivel, cantidad de litros y porcentaje de llenado en gráficas
+            dinámicas.
+          </p>
+
+          <h3>Motivación</h3>
+          <p>
+            En zonas donde el acceso al agua es crítico, conocer en tiempo real el nivel de tu tinaco puede ayudar a
+            planificar el consumo y las recargas. Este proyecto busca ser una solución sencilla y de bajo costo para
+            pequeños hogares o comunidades.
+          </p>
+
+          <h3>Arquitectura del sistema</h3>
+          <ul>
+            <li><strong>ESP32 + HC-SR04 + DHT11:</strong> Captura de datos de nivel y temperatura.</li>
+            <li><strong>Render:</strong> API REST que recibe las mediciones de la placa y las manda a Firebase.</li>
+            <li><strong>Firebase Realtime Database:</strong> Almacenamiento de los registros con timestamp.</li>
+            <li><strong>Dashboard (EJS + Chart.js):</strong> Visualización en tiempo real con gráficas y notificaciones.</li>
+          </ul>
+
+          <h3>Equipo de desarrollo</h3>
+          <p>
+            <b>Cesar Manuel Soto Urrutia</b><br />
+            -Responsable de firmware y sensor ultrasónico.<br />
+            -Desarrollador backend y API en Render.<br />
+            -Diseño e implementación del dashboard en Node/EJS.<br />
+          </p>
+
+          <h3>Próximas funcionalidades</h3>
+          <ol>
+            <li>Notificaciones vía correo o SMS cuando el nivel sea muy bajo o muy alto.</li>
+            <li>Histórico avanzado con filtros por fecha y exportar CSV.</li>
+            <li>Integración con otros servicios IoT (Google Home, Alexa).</li>
+            <li>Aplicacion Movil (Datos personalizados a eleccion del usuario)</li>
+          </ol>
+        </div>
+
+        <!-- Imagen 1: Ejemplo de esquema de conexión -->
+        <div class="about-images">
+          <div class="image-box">
+            <img src="/imagenes/conexiones.png" class="about-img" alt="Esquema de conexión ESP32" />
+            <p class="image-caption">Esquema de conexión ESP32 + HC-SR04 + DHT11</p>
+          </div>
+          <div class="image-box">
+            <img src="/imagenes/instalacion.jpeg" class="about-img" alt="Prototipo físico" />
+            <p class="image-caption">Prototipo montado en tinaco</p>
+          </div>
+          <div class="image-box">
+            <img src="/imagenes/dashboard.png" class="about-img" alt="Vista del dashboard" />
+            <p class="image-caption">Captura del dashboard en acción</p>
+          </div>
+        </div>        
+      </section>
+    </div>
+  </div>
+
+  <!-- Script para colapsar sidebar -->
+  <script>
+    const toggleBtn = document.getElementById('toggleSidebar');
+    const sidebar = document.getElementById('sidebar');
+
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+    });
+  </script>
+
+  <!-- Script para detectar mobile y ajustar layout -->
+  <script>
+    function checkMobile() {
+      const layout = document.querySelector('.layout');
+      if (window.innerWidth <= 768) {
+        layout.classList.add('mobile');
+      } else {
+        layout.classList.remove('mobile');
+      }
+    }
+
+    window.addEventListener('resize', checkMobile);
+    window.addEventListener('load', checkMobile);
+  </script>
+</body>
+</html>

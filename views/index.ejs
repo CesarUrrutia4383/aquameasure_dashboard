@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AquaMeasure Dashboard</title>
+  <!-- FullCalendar CSS y JS -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/chartjs/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">AquaMeasure</div>
+        <nav class="menu">
+          <ul>
+            <li class="active"><a href="/"><span class="icon">📊</span><span class="text">Dashboard</span></a></li>
+            <li><a href="/acercade"><span class="icon">❔</span><span class="text">Acerca de</span></a></li>
+            <li><a href="#"><span class="icon">📄</span><span class="text">Proximamente...</span></a></li>
+            <li><a href="#"><span class="icon">💬</span><span class="text">Proximamente...</span></a></li>
+          </ul>
+        </nav>
+      </aside>
+      
+
+    <div class="main-content">
+      <header class="header">
+        <button id="toggleSidebar">&#9776;</button>
+        <h1>¡Buen dia!</h1>
+        <div class="fecha-actual" id="fecha">--</div>
+      </header>
+
+      <section class="cards">
+        <div class="card"><h3>Temperatura</h3><p id="temp">-- °C</p></div>
+        <div class="card"><h3>Distancia</h3><p id="dist">-- cm</p></div>
+        <div class="card"><h3>Nivel Agua</h3><p id="nivel">-- cm</p></div>
+        <div class="card"><h3>Litros</h3><p id="litros">-- L</p></div>
+        <div class="card"><h3>Llenado</h3><p id="porcentaje">-- %</p></div>
+      </section>
+
+      <section class="graficas-container">
+        <div class="grafica-item"><h4>Temperatura (°C)</h4><canvas id="graficaTemp"></canvas></div>
+        <div class="grafica-item"><h4>Distancia (cm)</h4><canvas id="graficaDist"></canvas></div>
+        <div class="grafica-item"><h4>Nivel de Agua (cm)</h4><canvas id="graficaNivel"></canvas></div>
+        <div class="grafica-item"><h4>Cantidad de Agua (L)</h4><canvas id="graficaLitros"></canvas></div>
+        <div class="grafica-item"><h4>Porcentaje de llenado (%)</h4><canvas id="graficaAgua"></canvas></div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('toggleSidebar');
+    const sidebar = document.getElementById('sidebar');
+  
+    toggleBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+    });
+  </script>
+  <script>
+    function checkMobile() {
+      const layout = document.querySelector('.layout');
+      if (window.innerWidth <= 768) {
+        layout.classList.add('mobile');
+      } else {
+        layout.classList.remove('mobile');
+      }
+    }
+  
+    window.addEventListener('resize', checkMobile);
+    window.addEventListener('load', checkMobile);
+  </script>
+  
+  <script src="/js/main.js"></script>
+</body>
+</html>
